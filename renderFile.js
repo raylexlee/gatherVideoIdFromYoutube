@@ -1,0 +1,65 @@
+const { ipcMain } = require('electron');
+const fs = require('fs');
+
+const ipcRenderer = require('electron').ipcRenderer;
+const VideoRepresentation = arg => `Video["${arg.link}"] = {
+    "linktitle": "${arg.videoObj.linktitle}",
+    "title": "${arg.videoObj.title}",
+    "videoCount": "${arg.videoObj.videoCount}",
+    "category": "${arg.videoObj.category}"
+}`;
+
+ipcRenderer.on('video-sent', function(event, arg) {
+    const link = arg.link;
+    const video = arg.videoObj;
+    document.getElementById("link").value = `https://www.youtube.com/watch?v=${link}`;
+    document.getElementById("linktitle").value = video.linktitle;
+    document.getElementById("title").value = video.title;
+    document.getElementById("videoCount").value = video.videoCount;
+    document.getElementById(video.category).checked = true;
+    document.getElementById("link_videoObj").value = VideoRepresentation(arg);
+});
+
+ipcRenderer.on('link-title-sent', function(event, arg) {
+    const link = arg.link;
+    if (link) {
+      document.getElementById("link").value = `https://www.youtube.com/watch?v=${link}`;
+      document.getElementById("linktitle").value = arg.linktitle;
+    }
+});
+
+
+function requestVideo() {
+    const link = document.getElementById("link").value;
+    const r = link.match(/\?v=(.*)$/);
+    ipcRenderer.send('request-video', r ? r[1] : '')
+}
+
+function requestLinkTitle() {
+    ipcRenderer.send('request-link-title', 'request link title')
+}
+
+function sendForm(event) {
+    event.preventDefault() // stop the form from submitting
+    const url = document.getElementById("link").value;
+    const r = url.match(/v=(.*)$/);
+    if (!r) return;
+    const link = r[1];
+    const linktitle = document.getElementById("linktitle").value;
+    const videoCount = document.getElementById("videoCount").value;
+    const title = document.getElementById("title").value;
+    let categoryValue = "song";
+    const category = document.getElementsByName("category");
+    for (let x=0; x < category.length; x++)
+        if (category[x].checked) {
+            categoryValue = category[x].defaultValue;
+        }
+    const videoObj = {
+        linktitle: linktitle,
+        title: title,
+        videoCount: videoCount,
+        category: categoryValue
+    };
+    const arg = {link: link, videoObj: videoObj};
+    ipcRenderer.send('form-submission', arg)
+}

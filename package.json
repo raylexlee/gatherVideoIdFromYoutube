@@ -1,0 +1,21 @@
+{
+  "name": "gatherVideoIdFromYoutube",
+  "version": "1.0.0",
+  "description": "A desktop app to gather videoId or playlistId into video.json",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "youtube",
+    "electron"
+  ],
+  "author": "Raylex Lee",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^8.5.3"
+  },
+  "dependencies": {
+    "xregexp": "^4.4.0"
+  }
+}

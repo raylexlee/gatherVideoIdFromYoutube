@@ -1,0 +1,116 @@
+<!doctype html>
+  <title>Gather videoId into video.json</title>
+<style>
+  .myForm > * {
+   font: 1.2em sans-serif; 
+  }
+  .myForm {
+    display: grid;
+    grid-template-columns: [labels] auto [controls] 1fr;
+    grid-auto-flow: row;
+    grid-gap: .8em .5em;
+    background: beige;
+    padding: 1.2em;
+    width: 44em;
+  }
+  .myForm > label,
+  .myForm > fieldset  {
+    grid-column: labels;
+    grid-row: auto;
+  }
+  .myForm > input, 
+  .myForm > select,
+  .myForm > textarea,
+  .myForm > button {
+    grid-column: controls;
+    grid-row: auto;
+    padding: .4em;
+    border: 0;
+  }
+  .myForm > fieldset {
+    grid-column: span 2;
+  }  
+  .myForm > textarea {
+    min-height: 3em;
+    }
+  input[type="radio"]{
+    margin: 0 8px 0 16px;
+  }
+  .button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}  
+
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #c5c20a;
+}
+
+.button3:hover {
+  background-color: #c5c20a;
+  color: white;
+}  
+</style>
+<form class="myForm" name="ipcForm" onSubmit="JavaScript:sendForm(event)">
+
+    <label for="link">YT Link:</label>
+    <input type="text" name="link" id="link" value="">
+
+    <label for="linktitle">YT Title:</label>
+    <input type="text" name="linktitle" id="linktitle" value="">
+
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="">
+
+    <label for="videoCount">Count:</label>
+    <input type="text" name="videoCount" id="videoCount" value="1">
+
+  <fieldset>
+    <legend>Specify Category</legend>
+       <label><input type="radio" name="category" id="song" value="song" checked>Song  </label>
+       <label><input type="radio" name="category" id="album" value="album">Album </label>
+       <label><input type="radio" name="category" id="game" value="game">Game  </label>
+       <label><input type="radio" name="category" id="code" value="code">Code  </label>
+       <label><input type="radio" name="category" id="radio" value="radio">Radio </label>
+       <label><input type="radio" name="category" id="drama" value="drama">Drama</label>
+       <label><input type="radio" name="category" id="book" value="book">Book</label>
+  </fieldset>
+
+  <button class="button button3" type="submit">Submit</button>
+  <button class="button button1" type="reset">Reset</button>
+
+</form>
+<textarea name="link_videoObj" id="link_videoObj" cols="90" rows="15" value=""></textarea><br><br>
+<button class="button button1" onclick="JavaScript:requestVideo()">Restore Video Data</button>
+<button class="button button2" onclick="JavaScript:requestLinkTitle()">Request Link Title</button>
+<script src='./renderFile.js'></script>
