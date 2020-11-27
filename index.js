@@ -3,7 +3,6 @@ const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 const fs = require('fs');
 const Video = require('./lib/getVideo.js')();
 const videoJSONpath = './video.json';
-
 let window, wintube  
 
 function createWindow(){
@@ -53,7 +52,8 @@ ipcMain.on('request-video', (event, link) => {
 
 ipcMain.on('request-link-title', (event, req) => {
    const url = wintube.getURL();
-   const r = url.match(/v=(.*)$/);
+   // const r = url.match(/v=(.*)$/);
+   const r = url.match(/=([^=]+)$/);
    const link = r ? r[1] : '';
    const linktitle = r ? wintube.getTitle().replace(/\s-\sYouTube$/,'') : '';
    event.reply('link-title-sent', {link: link, linktitle: linktitle});
