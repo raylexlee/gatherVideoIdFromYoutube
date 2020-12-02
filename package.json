@@ -16,6 +16,7 @@
     "electron": "^8.5.3"
   },
   "dependencies": {
+    "moment": "^2.29.1",
     "xregexp": "^4.4.0"
   }
 }
