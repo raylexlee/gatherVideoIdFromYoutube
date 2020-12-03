@@ -86,4 +86,4 @@ const indexpage = navlist => `<!doctype html>
 </body>
   <script type='text/javascript' src='navbar/nav.js'></script>
 </html>`;
-fs.writeFileSync('index.html', indexpage(navList));
+fs.writeFileSync('./menu/index.html', indexpage(navList));
