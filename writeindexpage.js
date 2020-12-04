@@ -40,13 +40,6 @@ const indexpage = navlist => `<!doctype html>
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 
-  <!--///////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //		Styles
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
   <!-- Custom styles for this template -->
   <link rel='stylesheet' id='carousel' href='carousel.css' type='text/css' media='all'>
   <link rel='stylesheet' id='nav-css' href='navbar/nav.css' type='text/css' media='all'>
@@ -61,7 +54,7 @@ const indexpage = navlist => `<!doctype html>
       </div>
       <nav>
         <div class="nav-mobile">
-          <a id="nav-toggle" href="#!"><span></span></a>
+          <a class="active" id="nav-toggle" href="#!"><span></span></a>
         </div>
         <ul class="nav-list" id="navList">
            ${navlist}
@@ -76,14 +69,8 @@ const indexpage = navlist => `<!doctype html>
   <p>${now}</p>
 </section>
 
-  <!--///////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    //		Scripts
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////////////////-->
-  <script type='text/javascript' src='navbar/jquery.min.js'></script>
-  <script src="index.js"></script>
 </body>
-  <script type='text/javascript' src='navbar/nav.js'></script>
+  <script src="index.js"></script>
+  <script type='text/javascript' src='navbar/raylex_nav.js'></script>
 </html>`;
 fs.writeFileSync('./menu/index.html', indexpage(navList));
