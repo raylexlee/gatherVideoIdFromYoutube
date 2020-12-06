@@ -70,7 +70,7 @@ const indexpage = navlist => `<!doctype html>
 </section>
 
 </body>
-  <script src="index.js"></script>
+  <script src="raylex_index.js"></script>
   <script type='text/javascript' src='navbar/raylex_nav.js'></script>
 </html>`;
 fs.writeFileSync('./menu/index.html', indexpage(navList));
