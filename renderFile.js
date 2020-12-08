@@ -23,6 +23,17 @@ ipcRenderer.on('video-sent', function(event, arg) {
     document.getElementById("link_videoObj").value = VideoRepresentation(arg);
 });
 
+ipcRenderer.on('video-deleted', function(event, arg) {
+    const link = arg.link;
+    const video = arg.videoObj;
+    document.getElementById("link").value = videoLink(link);
+    document.getElementById("linktitle").value = video.linktitle;
+    document.getElementById("title").value = video.title;
+    document.getElementById("videoCount").value = video.videoCount;
+    document.getElementById(video.category).checked = true;
+    document.getElementById("link_videoObj").value = `DELETED ==>\n${VideoRepresentation(arg)}`;
+});
+
 ipcRenderer.on('link-title-sent', function(event, arg) {
     const link = arg.link;
     if (link) {
@@ -41,6 +52,12 @@ function requestVideo() {
 
 function requestLinkTitle() {
     ipcRenderer.send('request-link-title', 'request link title')
+}
+
+function deleteVideo() {
+    const link = document.getElementById("link").value;
+    const r = link.match(/=([^=]+)$/);
+    ipcRenderer.send('delete-video', r ? r[1] : '')
 }
 
 function sendForm(event) {

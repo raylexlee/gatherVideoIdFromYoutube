@@ -50,6 +50,16 @@ ipcMain.on('request-video', (event, link) => {
   event.reply('video-sent', arg)
 });
 
+ipcMain.on('delete-video', (event, link) => {
+  const arg = ( link && (link in Video) ) 
+      ? {link: link, videoObj: Video[link]} 
+      : {link: link, videoObj: {}};
+  if ( link && (link in Video) ) {
+      delete Video[link];
+  }    
+  event.reply('video-deleted', arg)
+});
+
 ipcMain.on('request-link-title', (event, req) => {
    const url = wintube.getURL();
    // const r = url.match(/v=(.*)$/);
