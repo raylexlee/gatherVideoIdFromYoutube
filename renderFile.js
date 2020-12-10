@@ -85,3 +85,28 @@ function sendForm(event) {
     const arg = {link: link, videoObj: videoObj};
     ipcRenderer.send('form-submission', arg)
 }
+
+function commandlineDownload() {
+    const url = document.getElementById("link").value;
+    // const r = url.match(/v=(.*)$/);
+    const r = url.match(/=([^=]+)$/);
+    if (!r) return;
+    const ytId = r[1];
+    const outputFilename = ytId.startsWith("PL")
+      ? "'%(playlist_index)s-%(title)s.%(ext)s'"
+      : "'%(title)s.%(ext)s'";
+    let formatValue = "-f mp4";
+    const format = document.getElementsByName("format");
+    for (let x=0; x < format.length; x++)
+        if (format[x].checked) {
+            formatValue = format[x].defaultValue;
+        }
+    let qualityValue = "5";
+    const quality = document.getElementsByName("quality");
+    for (let x=0; x < quality.length; x++)
+        if (quality[x].checked) {
+            qualityValue = quality[x].defaultValue;
+        }
+    document.getElementById("link_videoObj").value 
+      = `youtube-dl ${formatValue} --audio-quality ${qualityValue} -o ${outputFilename} ${url}`;    
+}

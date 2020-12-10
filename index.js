@@ -8,8 +8,10 @@ let window, wintube
 function createWindow(){
     window = new BrowserWindow({
         show: false,
-        width: 705,
-        height: 790,
+        x: 1161,
+        y: 52,
+        width: 783,
+        height: 1028,
         webPreferences: {
           nodeIntegration: true
           }
@@ -32,7 +34,7 @@ function createWindow(){
 
 function createWintube() { 
   const url =  `https://www.youtube.com`
-  wintube = new BrowserWindow({width: 1280, height: 700, title: url}) 
+  wintube = new BrowserWindow({x: 72, y: 380, width: 1280, height: 700, title: url}) 
   wintube.loadURL(url) 
 //  wintube.webContents.openDevTools()
 }  
