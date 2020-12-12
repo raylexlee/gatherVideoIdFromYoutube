@@ -58,6 +58,7 @@ ipcMain.on('delete-video', (event, link) => {
       : {link: link, videoObj: {}};
   if ( link && (link in Video) ) {
       delete Video[link];
+      fs.writeFileSync(videoJSONpath, JSON.stringify(Video));
   }    
   event.reply('video-deleted', arg)
 });
