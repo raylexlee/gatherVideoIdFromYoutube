@@ -27,6 +27,7 @@ const navList = person => {
   return Keys.map(catId => ` <li>
             ${optCategory(catId)}
             <ul class="nav-dropdown">
+            ${(catId === 'song') ? '<li><a href="javascript:playSongsRandom()">20 Random Songs</a></li>' : ''}
             ${playlistIds.filter(vId => Playlist[vId].category === catId).map(pId => optPlaylist(pId)).join('\n')}
             </ul>
           </li>`).join('\n');
