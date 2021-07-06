@@ -76,6 +76,7 @@ const indexpage = person => `<!doctype html>
   </section>
 <section>
   <p>${now}</p>
+  <textarea name="codes" id="idError" cols="90" rows="15" value=""></textarea><br><br>
 </section>
 ${(person === 'raylex') ? '<p id="idHint" style="background-color: white; color: white;"></p>' : ''}
 </body>
