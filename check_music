@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 cp /dev/null errorid.txt
-for ytid in $(jq keys video.json | sed -e '1 d' -e '$ d' | tr -d "\"",[:blank:])
+for ytid in $(jq keys album.json | sed -e '1 d' -e '$ d' | tr -d "\"",[:blank:])
 do
 if [[ $ytid =~ ^[OP]L ]]; then
 youtube-dl -s -q --playlist-end 1 https://www.youtube.com/playlist?list=$ytid
