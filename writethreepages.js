@@ -10,7 +10,7 @@ const Category = {
   "drama": "Video Drama",
   "book": "Audio-book"
 };
-const sandyKeys = ["song", "album", "radio"];
+const sandyKeys = ["song", "album", "drama"];
 const Name = {
   "index": '明',
   "raylex": 'Q',
